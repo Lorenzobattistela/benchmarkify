@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload .tflite File</title>
+  </head>
+  <body>
+    <h1>Upload .tflite File</h1>
+
+    <!-- File input element -->
+    <input type="file" id="tfliteFileInput" accept=".tflite" /><br /><br />
+
+    <!-- Model type selection -->
+    <label for="modelType">Select Model Type:</label>
+    <select id="modelType">
+      <option value="regression">Regression</option>
+      <option value="classification">Classification</option></select
+    ><br /><br />
+
+    <!-- Submit button -->
+    <button id="submitButton" disabled>Submit</button>
+
+    <script src="index.js"></script>
+  </body>
+</html>
