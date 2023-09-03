@@ -51,7 +51,7 @@ async function handleSubmit() {
 }
 
 async function benchmarkModel(model: Model) : Promise<BenchmarkResult>{
-    const url : string = 'http://localhost:5000/benchmark';
+    const url : string = 'http://127.0.0.1:5000/api/benchmark';
     const headers =  {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
