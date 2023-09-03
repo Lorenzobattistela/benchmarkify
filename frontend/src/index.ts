@@ -51,33 +51,15 @@ async function handleSubmit() {
 }
 
 async function benchmarkModel(model: Model) : Promise<BenchmarkResult>{
-    // const url : string = 'http://localhost:5000/benchmark';
-    // const headers =  {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    // }
-    // const body = JSON.stringify(model);
-    // const response = await fetch(url, {method: 'POST', headers: headers, body: body});
-    // const data = await response.json();
-    // return data as BenchmarkResult;
-    const file = "model.tflite" as TfLiteFile;
-    const modelRes : BenchmarkResult = {
-        model: {
-            name: "ModelName",
-            filename: file,
-            size: 1024,
-            modelType: "classification",
-            metrics: ["accuracy", "precision", "recall", "f1", "roc_auc"],
-        },
-        metrics: {
-            accuracy: 0.95,
-            precision: 0.85,
-            recall: 0.75,
-            f1: 0.88,
-            roc_auc: 0.92,
-        },
-    };
-    return modelRes;
+    const url : string = 'http://localhost:5000/benchmark';
+    const headers =  {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    }
+    const body = JSON.stringify(model);
+    const response = await fetch(url, {method: 'POST', headers: headers, body: body});
+    const data = await response.json();
+    return data as BenchmarkResult;
 }
 
 function buildDashboardInterface(benchmarkResult : BenchmarkResult) {
