@@ -4,11 +4,14 @@ import datetime
 from functools import wraps
 from dotenv import load_dotenv
 import os
-from .validators import isValidModel
+from validators import isValidModel
+from flask_cors import CORS
+
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 users = {
@@ -47,14 +50,25 @@ def login():
     return jsonify({'message': 'Invalid credentials'}), 401
 
 @app.route('/api/benchmark', methods=['POST'])
-@token_required
+# @token_required
 def benchmark():
     try:
-        data = request.get_json
-    
+        data = request.get_json()
+        valid = isValidModel(data)
+        if not valid:
+            return jsonify({"error": "model format is not valid"}), 412
+
+        # forged result
+        # TODO: run model and get the benchmarks answers
+        result = {
+            "model": data,
+            "metrics": {"mse": 0.89, "mae": 1.0, "r2": 0.5}
+        }
+        return jsonify(result), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    return
+
 
 
 if __name__ == '__main__':
