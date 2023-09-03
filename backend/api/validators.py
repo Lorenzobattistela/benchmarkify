@@ -8,7 +8,7 @@ def getMetrics(modelType: str) -> List:
     return metricsByModel.get(modelType)
 
 def isValidModel(model: Dict) -> bool:
-    if not model.get("filename") or not model.get("filesize") or not model.get("modelName") or not model.get("metrics") or not model.get("modelType"):
+    if not model.get("filename") or not model.get("size") or not model.get("name") or not model.get("metrics") or not model.get("modelType"):
         return False
     
     metrics = model.get("metrics")
