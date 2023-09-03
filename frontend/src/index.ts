@@ -112,7 +112,11 @@ function buildDashboardInterface(benchmarkResult: BenchmarkResult) {
 
 function handleFileUpload() {
   const input = fileInput;
-  if (input.files && input.files.length > 0) {
+  if (
+    input.files &&
+    input.files.length > 0 &&
+    hasTfLiteExtension(input.files[0].name)
+  ) {
     submitButton.disabled = false;
     return;
   }
